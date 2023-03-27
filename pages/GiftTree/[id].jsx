@@ -12,8 +12,8 @@ import { motion } from "framer-motion";
 
 const GiftRoute = () => {
 
-  const { userLogin, setUserLogin } = useContext(TeamC)
   const router = useRouter();
+  const { userLogin, setUserLogin } = useContext(TeamC)
 
   const [inputVisible, setInputVisible] = useState(false);
   const searchInput = useRef();
@@ -40,13 +40,10 @@ const GiftRoute = () => {
     dataGet();
   }, [])
 
-
-
   useEffect(()=>{
    
      if (userLogin == false) {
-      router.push('/')
-  }
+      router.push('/')  }
   },[userLogin])
   console.log(router.query.id)
 
