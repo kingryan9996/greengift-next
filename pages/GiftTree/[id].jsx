@@ -10,7 +10,7 @@ import { useRouter } from 'next/router';
 import styles from "@/styles/id.module.css";
 import { motion } from "framer-motion";
 
-const GiftRoute = () => {
+const GiftRouteCom = () => {
 
   const router = useRouter();
   const { userLogin, setUserLogin } = useContext(TeamC)
@@ -139,7 +139,7 @@ const GiftRoute = () => {
   );
 }
 
-export default GiftRoute
+export default GiftRouteCom
 
 
 
