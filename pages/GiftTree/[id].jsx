@@ -31,7 +31,7 @@ const GiftRouteCom = () => {
 
   async function dataGet() {
     axios.get('/api').then((res)=>{
-      setFriendList(res.data.filter(obj=>obj.UserID!=userLogin.UserID))      
+      setFriendList(res.data.filter(obj=>obj.UserID!=userLogin.UserID))
     })
   }
   let nameMatch = friendList?.filter(obj=>obj.UserID==router.query.id)
@@ -94,6 +94,8 @@ const GiftRouteCom = () => {
                     let newValue = res.data.filter((obj) => obj.NickName == searchInput.current.value);
                     console.log(newValue[0]?.NickName, '서치결과');
                     router.push(`/GiftTree/${newValue[0]?.UserID}`)
+                    toggleInput();
+                    searchInput.current.value="";
                     // alert(newValue[0]?.NickName + '님이 검색되었습니다.');
                   });
                 }}

@@ -40,21 +40,21 @@ const MyRouteCom = () => {
             <p style={{display: "block", width:200, height:200, margin: "0 auto", borderRadius: "50%",boxShadow: "0px 4px 10px 2px #ccc", border: "8px solid #fff"}}>
               <img style={{width: "100%", height: "100%", borderRadius: "50%"}} src={`/img/Profile${(userLogin.UserID%10)+1}.jpg`}/>
             </p>
-            <p style={{marginTop: "20px", textAlign: "center", fontSize: "25px"}}>{userLogin?.NickName}</p>
+            <p style={{marginTop: "20px", textAlign: "center", fontSize: "1.5rem"}}>{userLogin?.NickName}</p>
           </div>
         </div>
         
         <div style={{display: "flex", justifyContent: "center", width: "90%",marginBottom: "10px"}}>
-          <button onClick={()=>{setGiftVisible(false)}} style={{ backgroundColor: (giftVisible == false)? "#219bc3" : "#b2d3e1", display: "block", width: "50%", border: "none", margin: 0, padding: "14px 0", borderRadius: "10px 0 0 10px", borderRight: "1px solid #219bc3"}} >받은 선물</button>
-          <button onClick={()=>{setGiftVisible(true)}} style={{ backgroundColor: (giftVisible == true)? "#219bc3" : "#b2d3e1", display: "block", width: "50%", border: "none", margin: 0, padding: "14px 0", borderRadius: "0 10px 10px 0"}} >보낸 선물</button>
+          <button onClick={()=>{setGiftVisible(false)}} style={{ backgroundColor: (giftVisible == false)? "#219bc3" : "#b2d3e1", display: "block", width: "50%", border: "none", margin: 0, padding: "14px 0", borderRadius: "10px 0 0 10px", borderRight: "1px solid #219bc3", fontSize:"1rem"}} >받은 선물</button>
+          <button onClick={()=>{setGiftVisible(true)}} style={{ backgroundColor: (giftVisible == true)? "#219bc3" : "#b2d3e1", display: "block", width: "50%", border: "none", margin: 0, padding: "14px 0", borderRadius: "0 10px 10px 0",fontSize:"1rem"}} >보낸 선물</button>
         </div>
 
-        <div style={{display:giftVisible?"none":"block",width:"100%"}}>
-          <ul style={{display: "flex", flexDirection: "column", width: "90%", borderRadius: "10px", backgroundColor: "#fff",listStyle: "none",height: "40vh", overflow: "auto", padding: "12.5px 0", boxShadow: "0px 4px 10px 2px #ccc", border: "8px solid #fff"}}>
+        <div style={{display:giftVisible?"none":"block",width:"100%",height: "27vh", overflow: "scroll"}}>
+          <ul style={{display: "flex", flexDirection: "column", width: "90%", borderRadius: "10px", backgroundColor: "#fff",listStyle: "none", boxShadow: "0px 4px 10px 2px #ccc", border: "8px solid #fff"}}>
             {
               takeData && takeData.map((obj,idx )=>{
-                return <li key={idx} style={{width: "100%",margin: "0"}}> 
-                        <div style={{display: "flex", justifyContent: "flex-start", alignItems: "center",width: "100%" ,padding: " 12.5px 10%"}}>
+                return <li key={idx} style={{width: "100%",borderBottom:idx==takeData.length-1?"none":"1px solid rgba(0,0,0,0.05)",padding:"5px 0"}}> 
+                        <div style={{display: "flex", justifyContent: "flex-start", alignItems: "center",width: "100%" ,padding: "0 5%"}}>
                           <img src={obj.image} alt="gift" style={{display: "block", width: "70px", height: "70px", margin: 0, borderRadius: "50%", backgroundColor: "orange"}}/>
                           <div style={{width: "calc(100% - 70px)", margin: 0, paddingLeft: "20px"}}>
                             <p style={{width: "100%", fontSize: "14px",overflow: "hidden" ,textOverflow: "ellipsis", whiteSpace: "nowrap"}}>{obj.title.replaceAll("<b>","").replaceAll("</b>","")}</p>
