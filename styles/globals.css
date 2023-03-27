@@ -83,6 +83,9 @@ main {
   ); /* Add some transparency to the background color */
   backdrop-filter: blur(10px); /* Add the glassmorphism effect */
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
 
 input {

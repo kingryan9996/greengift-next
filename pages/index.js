@@ -84,11 +84,11 @@ export default function Home() {
           alt="image1"
           className={styles.image1}
         /> //////*/}
-        <img
+        {/* <img
           src="/img/pinkSun-removebg-preview.png"
           alt="image2"
           className={styles.image2}
-        />{" "}
+        />{" "} */}
         <div className={styles.textContainer}>
           <h1 className={styles.title}>
             소중한 사람에게
