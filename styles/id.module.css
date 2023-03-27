@@ -1,0 +1,84 @@
+/* id.module.css */
+
+.container {
+  position: relative;
+  width: 93%;
+  height: 100%;
+  border-radius: 24px;
+  z-index: 0;
+}
+
+.contentWrapper {
+  max-width: 600px;
+  min-width: 300px;
+  height: auto;
+  padding-top: 3%;
+}
+
+.flexContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+  width: 100%;
+  margin-bottom: 3%;
+}
+
+.ulStyle {
+  /* margin: 0 0 0 20px; */
+  display: flex;
+  padding: 2% 0;
+  list-style: none;
+}
+
+.liStyle {
+  width: 55px;
+  margin: 2px 8px 0;
+}
+
+.searchForm {
+  margin: 0 20px 0 0;
+  right: 0;
+  top: -30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.input {
+  width: 98%;
+  height: 34px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin: 5px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  background: rgba(255, 255, 255, 0.5);
+  outline: none;
+}
+/*   
+  .searchInput {
+    transform: scale(0);
+  } */
+
+.buttonStyle {
+  width: 30px;
+  height: 30px;
+  border: none;
+  background-color: transparent;
+}
+
+.imgStyle {
+  width: 55px;
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.showInput {
+  transform: scale(1);
+}
+
+.hideInput {
+  transform: scale(0);
+}
