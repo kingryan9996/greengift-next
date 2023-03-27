@@ -53,7 +53,7 @@ const ProductList = ({visible,setVisible}) => {
     const GetApi = (obj)=>{
         keyWo.current = obj;
         
-        axios.get(`https://port-0-green-gift-back-6g2llfc6npfv.sel3.cloudtype.app/search/shop?query=${obj}&display=${numRef.current}`)
+        axios.get(`https://port-0-node-greengift-nx562olfqkxd9g.sel3.cloudtype.app/search/shop?query=${obj}&display=${numRef.current}`)
         .then((res) => {
             setThenApi(res.data.items)
           });
@@ -61,7 +61,7 @@ const ProductList = ({visible,setVisible}) => {
   
         const dragApi = (obj) => {
   
-          axios.get(`https://port-0-green-gift-back-6g2llfc6npfv.sel3.cloudtype.app/search/shop?query=${obj}&display=${numRef.current}`)
+          axios.get(`https://port-0-node-greengift-nx562olfqkxd9g.sel3.cloudtype.app/search/shop?query=${obj}&display=${numRef.current}`)
           .then((res) => {
             setThenApi(res.data.items)
             numRef.current+=10
