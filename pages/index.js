@@ -9,14 +9,13 @@ import { Translate } from "@mui/icons-material";
 
 import styles from "@/styles/index.module.css";
 
-
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   const { setUserLogin } = useContext(TeamC);
   const router = useRouter();
 
-  function formLogin(e) { }
+  function formLogin(e) {}
   const [modalOpen, setModalOpen] = useState(false);
 
   const modalVariants = {
@@ -53,11 +52,9 @@ export default function Home() {
         }
       });
     } catch (error) {
-      console.log(error)
-      alert(error)
+      console.log(error);
+      alert(error);
     }
-
-
   }
 
   function formSignUp(e) {
@@ -86,7 +83,7 @@ export default function Home() {
           src="./img/Balloon-removebg-preview.png"
           alt="image1"
           className={styles.image1}
-        /> */}
+        /> //////*/}
         <img
           src="/img/pinkSun-removebg-preview.png"
           alt="image2"
@@ -104,7 +101,6 @@ export default function Home() {
             위시리스트를 공유하고, 선물을 주고받아보세요
           </p>
         </div>
-
         <div className={styles.formContainer}>
           <form method="post" onSubmit={formLogin}>
             <div className={styles.inputWrapper}>
@@ -144,9 +140,7 @@ export default function Home() {
             </button>
           </div>
         </div>
-
         <div className={modalOpen ? styles.modal : styles.modalHidden}>
-
           <button
             className={styles.modalCloseButton}
             onClick={() => {
@@ -170,19 +164,11 @@ export default function Home() {
             </div>
 
             <div className={styles.modalInputWrapper}>
-              <Form.Control
-                placeholder="생일"
-                name="birthday"
-                type="text"
-              />
+              <Form.Control placeholder="생일" name="birthday" type="text" />
             </div>
 
             <div className={styles.modalInputWrapper}>
-              <Form.Control
-                placeholder="닉네임"
-                name="nickname"
-                type="text"
-              />
+              <Form.Control placeholder="닉네임" name="nickname" type="text" />
             </div>
 
             <button className={styles.signupSubmitButton} type="submit">
