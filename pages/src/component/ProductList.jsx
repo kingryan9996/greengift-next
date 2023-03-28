@@ -97,7 +97,7 @@ const ProductList = ({visible,setVisible}) => {
         useEffect(() => {
           // 위시리스트
           userWishListGet();        
-        }, [router.query.id,visible]);
+        }, [router.query.id,visible,userLogin]);
 
         const userWishListGet = () => {
           axios.get('/api/gift',{params:{userLogin:router.query.id}}).then(
@@ -128,8 +128,8 @@ const ProductList = ({visible,setVisible}) => {
 
 
   return (
-    <div style={{width:"100%",height:"55vh",overflow:"scroll",  position:"relative"}}>
-      <div className={styles.Coin} ref={coinImg} style={{display:"none"}}><img style={{position:"fixed",top:"50%",left:"50%",transform:"translate(-50%,-50%)",width:300,borderRadius:"24px"}} src='/img/coin-crop.gif'/><strong style={{position:"fixed",top:"50%",left:"50%",transform:"translate(-50%,-50%)",fontSize:"2rem"}}><span style={{fontSize:"3rem"}}>-</span>{coinTag.current}</strong></div>
+    <div style={{width:"100%",  position:"relative"}}>
+      <div className={styles.Coin} ref={coinImg} style={{display:"none"}}><img style={{position:"fixed",top:"50%",left:"50%",transform:"translate(-50%,-50%)",width:250,borderRadius:"24px"}} src='/img/coin-crop.gif'/><strong style={{position:"fixed",top:"50%",left:"50%",transform:"translate(-50%,-50%)",fontSize:"2rem"}}><span style={{fontSize:"3rem"}}>-</span>{coinTag.current}</strong></div>
     
      {/* 카테고리, 카테리고리 검색 보여주는곳 */}
   

@@ -48,8 +48,7 @@ const GiftRouteCom = () => {
   console.log(router.query.id)
 
   return (
-    <div className={styles.container}>
-      
+    <div className={styles.container}>      
         <div className={styles.contentWrapper}>
           <div className={styles.flexContainer}>
             <ul className={styles.ulStyle}>
@@ -57,7 +56,6 @@ const GiftRouteCom = () => {
                 return (
                   <li
                     onClick={() => {
-                      // your onClick event
                     }}
                     key={idx}
                     className={styles.liStyle}
@@ -70,12 +68,7 @@ const GiftRouteCom = () => {
                           style={{filter:router.query.id==obj.UserID?"grayscale(0%)":"grayscale(100%)"
                         }}
                         />
-                        <figcaption
-                          style={{
-                            textAlign: 'center',
-                            fontFamily: 'Neo3',
-                          }}
-                        >
+                        <figcaption>
                           <strong style={{ fontSize: '13px' }}>{obj.NickName}</strong>
                         </figcaption>
                       </figure>
@@ -85,7 +78,7 @@ const GiftRouteCom = () => {
               })}
             </ul>
 
-            <div>
+            <div className={styles.searchWrap}>
               <form
                 onSubmit={(e) => {
                   e.preventDefault();
@@ -93,6 +86,7 @@ const GiftRouteCom = () => {
                   axios.get('/api').then((res) => {
                     let newValue = res.data.filter((obj) => obj.NickName == searchInput.current.value);
                     console.log(newValue[0]?.NickName, '서치결과');
+                    if(newValue[0]?.NickName==undefined){return alert('등록되지 않은 유저입니다.')}
                     router.push(`/GiftTree/${newValue[0]?.UserID}`)
                     toggleInput();
                     searchInput.current.value="";
@@ -130,7 +124,7 @@ const GiftRouteCom = () => {
               </form>
             </div>
           </div>
-                  <h2 style={{fontSize:"1.75rem",textAlign:"center",margin:"0 auto 10px"}}>{nameMatch?.length==0?userLogin.NickName:nameMatch?.[0].NickName}님의 위시리스트</h2>
+                  <div style={{marginTop:85}}><h2 style={{fontSize:"1.75rem",textAlign:"center",margin:"0 auto 10px"}}>{nameMatch?.length==0?userLogin.NickName:nameMatch?.[0].NickName}님의 위시리스트</h2></div>
           <ProductList visible={visible} setVisible={setVisible} />
 
         </div>
