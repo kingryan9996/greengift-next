@@ -11,6 +11,8 @@ const NavBar = () => {
 
   const router = useRouter();
   const { userLogin } = useContext(TeamC);
+  // console.log(router.isReady)
+  // console.log(router)
 
   return (
     <div className={`${styles.navbar} ${(router.pathname === '/') ? styles.displayNone : ''}`}>      
@@ -19,8 +21,7 @@ const NavBar = () => {
           href={`/GiftTree/${userLogin.UserID}`}
         >
           <div className={styles.linkContent}>
-            <FontAwesomeIcon style={{ width: 25, display:"block" }} icon={faGift} />
-            <p style={{paddingTop: "7px"}}>마이홈</p>
+            <FontAwesomeIcon style={{ width: 25, display:"block" }} icon={faGift} />            
           </div>
         </Link>
         <span className={styles.coin}>코인 : {Number(userLogin.Coin).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</span>
@@ -29,8 +30,7 @@ const NavBar = () => {
           href={`/MyPage/${userLogin.UserID}`}
         >
           <div className={styles.linkContent}>
-            <FontAwesomeIcon style={{ width: 20, display:"block" }} icon={faUser} />
-            <p style={{paddingTop: "7px"}}>내정보</p>
+            <FontAwesomeIcon style={{ width: 20, display:"block" }} icon={faUser} />            
           </div>
         </Link>
     </div>

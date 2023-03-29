@@ -40,23 +40,21 @@ const ProductList = ({visible,setVisible}) => {
     const numRef = useRef(10);
     const keyWo = useRef();
     
-    const a = useRef(true);
-
-
-
-    
+    const a = useRef(true);    
 
     //console.log(gift)
 
     
     // 네이버 검색 api 호출
+    // console.log(numRef.current,'?????????')
     const GetApi = (obj)=>{
         keyWo.current = obj;
         
         axios.get(`https://port-0-node-greengift-nx562olfqkxd9g.sel3.cloudtype.app/search/shop?query=${obj}&display=${numRef.current}`)
         .then((res) => {
           // console.log(res.data.items)
-            setThenApi(res.data.items)
+          setThenApi(res.data.items)
+          numRef.current+=10
           });
         }
   
@@ -101,11 +99,15 @@ const ProductList = ({visible,setVisible}) => {
           userWishListGet();        
         }, [router.query.id,visible,userLogin]);
 
+
+
         const userWishListGet = () => {
           axios.get('/api/gift',{params:{userLogin:router.query.id}}).then(
-            res=>
-            SetGive(res.data))
+            res=> SetGive(res.data))
         }
+
+
+
 
         const searchCg = (e)=>{
           GetApi(e.target[0].value);
@@ -152,25 +154,31 @@ const ProductList = ({visible,setVisible}) => {
     {/* 트리공간에 선물 뿌리기 */}
 
     {/* 선물하기, 삭제하기 박스크기 */}
-    <div style={{width:"100%", display:"flex", flexWrap:"wrap"}}>
+    <div style={{width:"100%", display:"flex", flexWrap:"wrap",padding:"0 10px"}}>
 
     {Give && Give?.sort((a, b) => a.state - b.state).map((obj,idx)=>{
       return(        
-      <div style={{width:"50%",padding:"5px",margin:0}}>
-        <article key={"Tree"+idx}
+      <div style={{width:"50%",margin:0,padding:"10px"}}>
+        <figure key={"Tree"+idx}
         style={{
-        boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)", // 그림자 효과
-        background:"rgba(255, 255, 255, 0.5)",
+        background:"#fff",
         borderRadius: "10px",
         display: "flex",
         flexDirection: "column",
         overflow: "hidden",
-        padding:"12px",
+        padding:"10px",
         marginBottom: "10px",
         }}>
       <img className={styles.treeListImg} src={obj.image} style={{filter:obj.state==0?"grayscale(0%)":"grayscale(100%)"}} />
+      <figcaption
+      style={{
+        width:"100%",
+        display:"block",
+        textAlign:"center",
+      }}>
       <strong style={{fontSize:"0.9rem"}}> {obj.title.replaceAll("<b>","").replaceAll("</b>","").substr(0, maxLength) + (obj.title.length > maxLength ? "..." : "")}</strong>
-      <span>{Number(obj.price).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</span>
+      <p style={{padding:"5px 0"}}> {Number(obj.price).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</p>
+      </figcaption>
 
 
 
@@ -196,14 +204,13 @@ const ProductList = ({visible,setVisible}) => {
       
       
       :<button disabled={obj.state==1?true:false} onClick={()=>{
-        if (userLogin.Coin < obj.price) return alert('보유 코인이 부족합니다.')       
-   
+        if (userLogin.Coin < obj.price) return alert('보유 코인이 부족합니다.')   
           if(coinImg.current.style.display == "none"){
-            console.log(obj.price)
+            // console.log(obj.price)
             coinTag.current = obj.price
             coinImg.current.style.display="block";          
                 setTimeout(() => 
-                coinImg.current.style.display="none", 2000)}
+                coinImg.current.style.display="none", 1000)}
         
         axios.put(
         '/api/gift',{
@@ -211,11 +218,11 @@ const ProductList = ({visible,setVisible}) => {
           GiverID:userLogin.UserID,
           GiverName:userLogin.NickName
         })
-        console.log(obj.price)
+        // console.log(obj.price)
         
-  console.log(userLogin.Coin-obj.price)//보유코인에서 돈뺏을때
-  console.log(userLogin)
-  console.log(userLogin.UserID) // 를 써서 아이디값 수정
+  // console.log(userLogin.Coin-obj.price)//보유코인에서 돈뺏을때
+  // console.log(userLogin)
+  // console.log(userLogin.UserID) // 를 써서 아이디값 수정
   // 유저리스트 접속해서 데이터 수정 put 으로 보유코인을 userLogin.Coin-obj.price 으로 변경해주기.
 
   
@@ -227,11 +234,11 @@ const ProductList = ({visible,setVisible}) => {
   ///
  
   axios.get("/api", { LoginID: userLogin.UserID }).then((res) => {
-    console.log(res.data)
+    // console.log(res.data)
     let newValue = res?.data?.filter(
       (obj) => obj.UserID == userLogin.UserID
     );
-    console.log(newValue[0])
+    // console.log(newValue[0])
     setUserLogin(newValue[0])
   })
 
@@ -249,7 +256,7 @@ const ProductList = ({visible,setVisible}) => {
       }}>{obj.state==1?"이미 받은 선물입니다.":"선물하기"}
       </button>
       }
-      </article></div>
+      </figure></div>
       
       )
     })}
@@ -285,7 +292,7 @@ const ProductList = ({visible,setVisible}) => {
 
           style={{ 
             height: "50px", 
-            margin: "20px",
+            margin: "10px auto",
             borderRadius: "10px", // 라디우스 조정
             fontSize: "14px", // 폰트 크기 조정
             width: "265px", // 너비 조정
@@ -323,10 +330,9 @@ const ProductList = ({visible,setVisible}) => {
       </article>
 
         <ul style={{
-           margin:"0 20px",
+           margin:"0 20px 10px",
            display: "flex",
            listStyle: "none",
-           paddingBottom:"5%",
            justifyContent: "space-around",
            alignItems: "center",
 
@@ -365,7 +371,7 @@ const ProductList = ({visible,setVisible}) => {
         <div style={{width:"98%", display:"flex", flexWrap:"wrap",justifyContent:"center",alignContent:"center"}}>
 
           {thenApi && thenApi.map((obj, idx)=>{
-            return <div key={"shopping" + idx}
+            return <figure key={"shopping" + idx}
               style={{
                 
                 backgroundColor:"#fff",
@@ -388,7 +394,6 @@ const ProductList = ({visible,setVisible}) => {
           padding: "10px, 10px, 10px",
           display: "block",
           textAlign:"center",
-          paddingTop: "7",
 
           // display: "flex",
           // flexDirection: "column",
@@ -398,7 +403,7 @@ const ProductList = ({visible,setVisible}) => {
           flexGrow: "1",
           }}>
         <strong style={{fontSize:"0.9rem"}}>{obj.title.replaceAll("<b>","").replaceAll("</b>","").substr(0, maxLength) + (obj.title.length > maxLength ? "..." : "") }</strong>
-        <p style={{padding:"5px 0"}}> {obj.lprice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</p>
+        <p style={{padding:"5px 0"}}> {Number(obj.lprice).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</p>
         <div
         style={{
         display: "flex",
@@ -440,11 +445,11 @@ const ProductList = ({visible,setVisible}) => {
         </div>
       </figcaption> 
  
-             </div>})}
+             </figure>})}
 
         </div>
 
-    <div ref={setBottom} style={{opacity:0}}>바닥</div>
+    <div ref={setBottom} style={{opacity:0,transform:"translateY(-5px)"}}>바닥</div>
               
 
     </div>
@@ -469,7 +474,7 @@ const ProductList = ({visible,setVisible}) => {
         right:"3%",
         zIndex:"99"
         }}
-      onClick={() => { setVisible(!visible); } }>{!visible?"WishList":"닫기"}
+      onClick={() => { setVisible(!visible);numRef.current=10 } }>{!visible?"WishList":"닫기"}
     </button>
 
     </div>

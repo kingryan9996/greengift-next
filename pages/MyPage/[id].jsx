@@ -16,9 +16,13 @@ const MyRouteCom = () => {
 
 
     useEffect(()=>{
-      axios.get('/api/gift',{params:{userLogin:userLogin.UserID}}).then(res=>{setTakeData(res.data.filter(obj=>obj.state==1));console.log(res.data.filter(obj=>obj.state==1))})
+      axios.get('/api/gift',{params:{userLogin:userLogin.UserID}}).then(res=>{setTakeData(res.data.filter(obj=>obj.state==1));
+        // console.log(res.data.filter(obj=>obj.state==1))
+      })
       ///////////////////
-      axios.get('/api/givepost',{params:{userLogin:userLogin.UserID}}).then(res=>{setGiveData(res.data);console.log(res.data)})
+      axios.get('/api/givepost',{params:{userLogin:userLogin.UserID}}).then(res=>{setGiveData(res.data);
+        // console.log(res.data)
+      })
 
        if (userLogin == false) {
         router.push('/')

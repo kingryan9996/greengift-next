@@ -45,7 +45,7 @@ const GiftRouteCom = () => {
      if (userLogin == false) {
       router.push('/')  }
   },[userLogin])
-  console.log(router.query.id)
+  // console.log(router.query.id)
 
   return (
     <div className={styles.container}>      
@@ -82,10 +82,10 @@ const GiftRouteCom = () => {
               <form
                 onSubmit={(e) => {
                   e.preventDefault();
-                  console.log(searchInput.current.value);
+                  // console.log(searchInput.current.value);
                   axios.get('/api').then((res) => {
                     let newValue = res.data.filter((obj) => obj.NickName == searchInput.current.value);
-                    console.log(newValue[0]?.NickName, '서치결과');
+                    // console.log(newValue[0]?.NickName, '서치결과');
                     if(newValue[0]?.NickName==undefined){return alert('등록되지 않은 유저입니다.')}
                     router.push(`/GiftTree/${newValue[0]?.UserID}`)
                     toggleInput();
@@ -124,7 +124,7 @@ const GiftRouteCom = () => {
               </form>
             </div>
           </div>
-                  <div style={{marginTop:85}}><h2 style={{fontSize:"1.75rem",textAlign:"center",margin:"0 auto 10px"}}>{nameMatch?.length==0?userLogin.NickName:nameMatch?.[0].NickName}님의 위시리스트</h2></div>
+                  <div style={{margin:"120px 0 25px"}}><h2 style={{fontSize:"1.4rem",textAlign:"center",margin:"0 auto 10px"}}>{nameMatch?.length==0?userLogin.NickName:nameMatch?.[0].NickName}님의 위시리스트</h2></div>
           <ProductList visible={visible} setVisible={setVisible} />
 
         </div>

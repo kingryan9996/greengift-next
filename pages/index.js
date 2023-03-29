@@ -52,20 +52,20 @@ export default function Home() {
         }
       });
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       alert(error);
     }
   }
 
   function formSignUp(e) {
     e.preventDefault();
-    console.log(e);
-    console.log(
-      e.target.signid.value,
-      e.target.signpasswords.value,
-      e.target.nickname.value,
-      e.target.birthday.value
-    );
+    // console.log(e);
+    // console.log(
+    //   e.target.signid.value,
+    //   e.target.signpasswords.value,
+    //   e.target.nickname.value,
+    //   e.target.birthday.value
+    // );
     axios.post("/api", {
       LoginID: e.target.signid.value,
       LoginPW: e.target.signpasswords.value,

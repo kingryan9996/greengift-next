@@ -32,11 +32,12 @@
   z-index: 99;
   margin-bottom: 5px;
   transform: translateX(-50%);
+  padding: 2% 3%;
 }
 
 .ulStyle {
   margin: 0;
-  padding: 2px;
+  padding-top: 2px;
   list-style: none;
   display: flex;
   justify-content: center;
