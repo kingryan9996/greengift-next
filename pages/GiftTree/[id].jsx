@@ -61,7 +61,7 @@ const GiftRouteCom = () => {
                     className={styles.liStyle}
                   >
                     <Link href={`/GiftTree/${obj.UserID}`}>
-                      <figure>
+                      <figure style={{padding:"3px 0"}}>
                         <img
                           className={styles.imgStyle}
                           src={`/img/Profile${(obj.UserID%10)+1}.jpg`}

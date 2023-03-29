@@ -13,3 +13,9 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+.naverSearchImg{
+  width: 100%;
+  --p: width;
+  height: var(--p) px;
+}
