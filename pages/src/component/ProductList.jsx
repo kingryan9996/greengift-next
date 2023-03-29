@@ -103,7 +103,9 @@ const ProductList = ({visible,setVisible}) => {
 
         const userWishListGet = () => {
           axios.get('/api/gift',{params:{userLogin:router.query.id}}).then(
-            res=> SetGive(res.data))
+            (res)=> {SetGive(res.data.filter(obj=>obj.state===0))
+              // console.log(res.data)
+            })
         }
 
 
@@ -273,7 +275,6 @@ const ProductList = ({visible,setVisible}) => {
       display:visible?"block":"none",
       overflow:"auto",
       borderRadius: "10px",
-      top:"0px",
       boxShadow: "0px 2px 10px rgba(0, 0, 0, 0.15)",
       backgroundColor: "#f9e9ee",
 
@@ -295,7 +296,8 @@ const ProductList = ({visible,setVisible}) => {
             margin: "10px auto",
             borderRadius: "10px", // 라디우스 조정
             fontSize: "14px", // 폰트 크기 조정
-            width: "265px", // 너비 조정
+            width:"80%",
+            minWidth: "265px", // 너비 조정
             border: "none", // 검은색 보더 제거
             outline: "none", // 클릭 시 파란색 아웃라인 제거
             padding: "10px", // 내부 여백 조정

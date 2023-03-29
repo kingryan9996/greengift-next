@@ -44,10 +44,33 @@
   font-size: 1rem;
 }
 
-.linkContent {
+.giftLinkContent {
   display: flex;
   flex-direction: column;
   align-items: center;
 
   justify-content: center;
+}
+
+.userLinkContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  justify-content: center;
+  position: relative;
+}
+
+.userLinkContentBadge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(50%,-70%);
+  border-radius: 50%;
+  background-color: #dc5d46;
+  color: white;
+  width: 16px;
+  height: 16px;
+  text-align: center;
+  font-size: 12px;
 }
