@@ -268,7 +268,7 @@ const ProductList = ({visible,setVisible}) => {
       width:"100%",
       marginBottom:100,
       position:"fixed",
-      top:100px,
+      top:"100px",
       left:0,
       display:visible?"block":"none",
       overflow:"auto",
