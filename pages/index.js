@@ -4,7 +4,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { useContext } from "react";
 import { TeamC } from "./src/Context";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Translate } from "@mui/icons-material";
 
 import styles from "@/styles/index.module.css";
@@ -75,6 +75,56 @@ export default function Home() {
     setModalOpen(!modalOpen);
   }
 
+  ////////////////////////////////////////////////
+  ////////////////////////////////////////////////
+  ////////////////////////////////////////////////
+
+  const installApp = () => {
+    if (!deferredPrompt.current) return false;
+
+    //홈화면의 추가를 실행시킨다
+    deferredPrompt.current.prompt();
+
+    //실행 후 유저가 설치를 했는지 안했는지를 알 수 있다
+    deferredPrompt.current.userChoice.then((choiceResult) => {
+      //설치 했을 때
+      if (choiceResult.outcome === "accepted") {
+        console.log("User accepted the A2HS prompt");
+        dispatch({
+          type: "HIDE_BUTTON",
+        });
+      } else {
+        //설치 하지 않았을 때
+        console.log("User dismissed the A2HS prompt");
+      }
+    });
+  };
+
+  let deferredPrompt = useRef(null);
+
+  useEffect(() => {
+    console.log("Listening for Install prompt");
+    window.addEventListener("beforeinstallprompt", (e) => {
+      e.preventDefault();
+      deferredPrompt.current = e;
+    });
+
+    //설치가 되어있다면 버튼은 숨긴다
+    if (!deferredPrompt.current) {
+      // return dispatch({
+      //   type: "HIDE_BUTTON",
+      // });
+    }
+
+    //버튼을 보여줌
+    // dispatch({
+    //   type: "SHOW_BUTTON",
+    // });
+  }, []);
+
+  ////////////////////////////////////////////////
+  ////////////////////////////////////////////////
+
   return (
     <>
       <div className={styles.container}>
@@ -95,6 +145,7 @@ export default function Home() {
             <br />
             마음을 전해보세요 !
           </h1>
+          <button onClick={installApp}>다운로드</button>
           <p className={styles.subtitle}>
             내가 받고싶은 선물을 위시리스트에 담아보세요
             <br />
